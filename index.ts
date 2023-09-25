@@ -4,6 +4,14 @@ import axios from 'axios';
 
 dotenv.config();
 
+const instance = axios.create({
+    proxy: {
+        protocol: 'SOCKS5',
+        host: '202.58.199.204',
+        port: 5678,
+    }
+});
+
 const app: Express = express();
 const port = process.env.PORT;
 
@@ -22,11 +30,11 @@ app.use((req, res, next) => {
 });
 
 app.get('/calculator-get-us-ports', (req: Request, res: Response) => {
-    axios({
+    instance({
         url: apiService.calculatorGetUsPorts,
         data: {
             location_id: req.query.location_id
-        }
+        },
     }).then(response => {
         res.send(response.data);
     }).catch(e => {
@@ -35,7 +43,7 @@ app.get('/calculator-get-us-ports', (req: Request, res: Response) => {
 });
 
 app.get('/calculator-get-auclocations', (req: Request, res: Response) => {
-    axios({
+    instance({
         url: apiService.calculatorGetAucLocations,
         data: {
             auc_id: req.query.auc_id
@@ -49,7 +57,7 @@ app.get('/calculator-get-auclocations', (req: Request, res: Response) => {
 
 // calculator-recalculate
 app.get('/calculator-recalculate', (req: Request, res: Response) => {
-    axios({
+    instance({
         url: apiService.calculatorRecalculate,
         data: {
             'auc_location_id': req.query.aucLocationId,
@@ -68,7 +76,7 @@ app.get('/calculator-recalculate', (req: Request, res: Response) => {
 
 // calculator-get-intlcities
 app.get('/calculator-get-intlcities', (req: Request, res: Response) => {
-    axios({
+    instance({
         url: apiService.calculatorGetIntCities,
         data: {
             'port_id': req.query.port_id,
