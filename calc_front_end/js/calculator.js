@@ -1,15 +1,15 @@
-const api_url_boom = 'http://localhost:8081';
+const api_url_boom = '';
 
 const apiService = {
-  calculatorGetUsPorts:  `/calculator-get-us-ports`,
-  calculatorGetAucLocations: `/calculator-get-auclocations`,
-  calculatorGetIntCities: `/calculator-get-intlcities`,
-  calculatorRecalculate: `/calculator-recalculate`
+  calculatorGetUsPorts:  `${api_url_boom}/calculator-get-us-ports`,
+  calculatorGetAucLocations: `${api_url_boom}/calculator-get-auclocations`,
+  calculatorGetIntCities: `${api_url_boom}/calculator-get-intlcities`,
+  calculatorRecalculate: `${api_url_boom}/calculator-recalculate`
 }
 
 const apiUrls = {
-  sideCalcNextBtnUrl: `/calculator?auc_id=`,
-  calcReserve: `/calc-reserve?auc_location_id=`,
+  sideCalcNextBtnUrl: `${api_url_boom}/calculator?auc_id=`,
+  calcReserve: `${api_url_boom}/calc-reserve?auc_location_id=`,
 }
 
 function loadUsPorts(mobile=false)
@@ -54,8 +54,9 @@ function loadUsPorts(mobile=false)
 
 
 $(document).ready(function(){
-  //loadAucLocations();
-  //loadIntlCities();
+
+  // loadAucLocations();
+  // loadIntlCities();
   clearCalculatorGround();
   clearCalculatorOcean();
   clearCalculatorGroundSm();
@@ -454,7 +455,7 @@ function loadIntlPostCities_m()
   var data = "";
   $.ajax({
     type:"GET",
-    url : "https://vsbrothers.com/calculator-get-intlcities",
+    url : apiService.calculatorGetIntCities,
     data : "port_id="+portId,
     success : function(response) {
       $('#calcSelectIntlCities_m').empty();
@@ -662,7 +663,7 @@ function loadIntlPostCities_car()
   var data = "";
   $.ajax({
     type:"GET",
-    url : "https://vsbrothers.com/calculator-get-intlcities",
+    url : apiService.calculatorGetIntCities,
     data : "port_id="+portId,
     success : function(response)
     {
@@ -699,7 +700,7 @@ function loadAucLocations_car()
   // https://vsbrothers.com/calculator-get-auclocations
   $.ajax({
     type:"GET",
-    url : "https://vsbrothers.com/calculator-get-auclocations",
+    url : apiService.calculatorGetAucLocations,
     data : "auc_id="+aucId,
     success : function(response)
     {
@@ -816,7 +817,7 @@ function recalculate_car()
   // https://vsbrothers.com/calculator-recalculate
   $.ajax({
     type:"GET",
-    url : "https://vsbrothers.com/calculator-recalculate",
+    url : apiService.calculatorRecalculate,
     data : {
       'auc_location_id':aucLocationId,
       'us_port_id':portUSId,
