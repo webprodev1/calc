@@ -1,15 +1,15 @@
 const api_url_boom = 'http://localhost:8081';
 
 const apiService = {
-  calculatorGetUsPorts:  `${api_url_boom}/calculator-get-us-ports`,
-  calculatorGetAucLocations: `${api_url_boom}/calculator-get-auclocations`,
-  calculatorGetIntCities: `${api_url_boom}/calculator-get-intlcities`,
-  calculatorRecalculate: `${api_url_boom}/calculator-recalculate`
+  calculatorGetUsPorts:  `/calculator-get-us-ports`,
+  calculatorGetAucLocations: `/calculator-get-auclocations`,
+  calculatorGetIntCities: `/calculator-get-intlcities`,
+  calculatorRecalculate: `/calculator-recalculate`
 }
 
 const apiUrls = {
-  sideCalcNextBtnUrl: `${api_url_boom}/calculator?auc_id=`,
-  calcReserve: `${api_url_boom}/calc-reserve?auc_location_id=`,
+  sideCalcNextBtnUrl: `/calculator?auc_id=`,
+  calcReserve: `/calc-reserve?auc_location_id=`,
 }
 
 function loadUsPorts(mobile=false)
