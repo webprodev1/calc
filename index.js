@@ -46,7 +46,6 @@ app.get('/calculator-get-auclocations', (req, res) => {
 });
 // calculator-recalculate
 app.get('/calculator-recalculate', (req, res) => {
-    console.log(req.query);
     (0, axios_1.default)({
         url: apiService.calculatorRecalculate,
         data: {

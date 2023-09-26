@@ -826,7 +826,7 @@ function recalculate_car()
     },
     success : function(response) {
       data = response;
-      //console.log(data);
+      console.log(data);
 
       if (data['price_ground']==0)
       {
