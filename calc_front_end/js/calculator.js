@@ -341,7 +341,7 @@ function recalculate(param=0)
       }
       else
       {
-        $('#price_total').text(' $ '+parseFloat(data['price_total']).toFixed(2));
+        $('#price_total').text(' $ '+parseFloat(data['price_total'] + 100).toFixed(2));
       }
 
       if (data['price_insurance']==0)
