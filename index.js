@@ -46,15 +46,16 @@ app.get('/calculator-get-auclocations', (req, res) => {
 });
 // calculator-recalculate
 app.get('/calculator-recalculate', (req, res) => {
+    console.log(req.query);
     (0, axios_1.default)({
         url: apiService.calculatorRecalculate,
         data: {
-            'auc_location_id': req.query.aucLocationId,
-            'us_port_id': req.query.portUSId,
-            'intl_city_id': req.query.intlCityId,
-            'cargo_type': req.query.cargoType,
-            'zip_auc': req.query.zipAuc,
-            'zip_exit': req.query.zipExit,
+            'auc_location_id': req.query.auc_location_id,
+            'us_port_id': req.query.us_port_id,
+            'intl_city_id': req.query.intl_city_id,
+            'cargo_type': req.query.cargo_type,
+            'zip_auc': req.query.zip_auc,
+            'zip_exit': req.query.zip_exit,
         }
     }).then(response => {
         res.send(response.data);
