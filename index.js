@@ -7,15 +7,8 @@ const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const axios_1 = __importDefault(require("axios"));
 dotenv_1.default.config();
-const instance = axios_1.default.create({
-    proxy: {
-        protocol: 'SOCKS5',
-        host: '202.58.199.204',
-        port: 5678,
-    }
-});
 const app = (0, express_1.default)();
-const port = process.env.PORT;
+const port = process.env.PORT || 8080;
 const api_url = 'https://vsbrothers.com';
 const apiService = {
     calculatorGetUsPorts: `${api_url}/calculator-get-us-ports`,
@@ -28,7 +21,7 @@ app.use((req, res, next) => {
     next();
 });
 app.get('/calculator-get-us-ports', (req, res) => {
-    instance({
+    (0, axios_1.default)({
         url: apiService.calculatorGetUsPorts,
         data: {
             location_id: req.query.location_id
@@ -40,7 +33,7 @@ app.get('/calculator-get-us-ports', (req, res) => {
     });
 });
 app.get('/calculator-get-auclocations', (req, res) => {
-    instance({
+    (0, axios_1.default)({
         url: apiService.calculatorGetAucLocations,
         data: {
             auc_id: req.query.auc_id
@@ -53,7 +46,7 @@ app.get('/calculator-get-auclocations', (req, res) => {
 });
 // calculator-recalculate
 app.get('/calculator-recalculate', (req, res) => {
-    instance({
+    (0, axios_1.default)({
         url: apiService.calculatorRecalculate,
         data: {
             'auc_location_id': req.query.aucLocationId,
@@ -71,7 +64,7 @@ app.get('/calculator-recalculate', (req, res) => {
 });
 // calculator-get-intlcities
 app.get('/calculator-get-intlcities', (req, res) => {
-    instance({
+    (0, axios_1.default)({
         url: apiService.calculatorGetIntCities,
         data: {
             'port_id': req.query.port_id,
