@@ -61,7 +61,11 @@ app.get('/calculator-recalculate', (req: Request, res: Response) => {
             'zip_exit': req.query.zip_exit,
         }
     }).then(response => {
-        res.send(response.data);
+        const data = {...response.data};
+        if (data.price_total) {
+            data.price_total = data.price_total + 100;
+        }
+        res.send(data);
     }).catch(e => {
         console.log(e);
     });
